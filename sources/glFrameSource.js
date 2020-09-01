@@ -1,11 +1,13 @@
-const GL = require('gl');
-const createShader = require('gl-shader');
-const fs = require('fs-extra');
+const createShader = require("gl-shader");
+const fs = require("fs-extra");
 
 // I have no idea what I'm doing but it works ¯\_(ツ)_/¯
 
 async function createGlFrameSource({ width, height, channels, params }) {
-  const gl = GL(width, height);
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const gl = canvas.getContext("webgl");
 
   const defaultVertexSrc = `
     attribute vec2 position;

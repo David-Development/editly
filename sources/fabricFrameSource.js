@@ -1,12 +1,9 @@
-const { fabric } = require('fabric');
-const fileUrl = require('file-url');
-const nodeCanvas = require('canvas');
+const { fabric } = require("fabric-pure-browser");
+const fileUrl = require("file-url");
 
-const { createCanvas } = nodeCanvas;
-
-const { canvasToRgba } = require('./shared');
-const { getRandomGradient, getRandomColors } = require('../colors');
-const { easeOutExpo } = require('../transitions');
+const { canvasToRgba } = require("./shared");
+const { getRandomGradient, getRandomColors } = require("../colors");
+const { easeOutExpo } = require("../transitions");
 
 // http://fabricjs.com/kitchensink
 
@@ -36,8 +33,10 @@ async function renderFabricCanvas(canvas) {
 }
 
 async function rgbaToFabricImage({ width, height, rgba }) {
-  const canvas = createCanvas(width, height);
-  const ctx = canvas.getContext('2d');
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
   // https://developer.mozilla.org/en-US/docs/Web/API/ImageData/ImageData
   // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/putImageData
   ctx.putImageData(new nodeCanvas.ImageData(Uint8ClampedArray.from(rgba), width, height), 0, 0);
@@ -322,8 +321,10 @@ async function newsTitleFrameSource({ width, height, params }) {
 }
 
 async function createCustomCanvasFrameSource({ width, height, params }) {
-  const canvas = createCanvas(width, height);
-  const context = canvas.getContext('2d');
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const context = canvas.getContext("2d");
 
   const { onClose, onRender } = await params.func(({ width, height, canvas }));
 

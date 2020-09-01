@@ -1,12 +1,14 @@
-const GL = require('gl');
-const ndarray = require('ndarray');
-const createBuffer = require('gl-buffer');
-const transitions = require('gl-transitions');
-const createTransition = require('gl-transition').default;
-const createTexture = require('gl-texture2d');
+const ndarray = require("ndarray");
+const createBuffer = require("gl-buffer");
+const transitions = require("gl-transitions");
+const createTransition = require("gl-transition").default;
+const createTexture = require("gl-texture2d");
 
 module.exports = ({ width, height, channels }) => {
-  const gl = GL(width, height);
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const gl = canvas.getContext("webgl");
 
   if (!gl) {
     throw new Error('gl returned null, this probably means that some dependencies are not installed. See README.');

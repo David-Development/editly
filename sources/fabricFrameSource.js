@@ -7,12 +7,13 @@ const { easeOutExpo } = require("../transitions");
 
 // http://fabricjs.com/kitchensink
 
-
 function fabricCanvasToRgba(canvas) {
   // https://github.com/fabricjs/fabric.js/blob/26e1a5b55cbeeffb59845337ced3f3f91d533d7d/src/static_canvas.class.js
   // https://github.com/fabricjs/fabric.js/issues/3885
-  const internalCanvas = fabric.util.getNodeCanvas(canvas.lowerCanvasEl);
-  const ctx = internalCanvas.getContext('2d');
+  //const internalCanvas = fabric.util.getNodeCanvas(canvas.lowerCanvasEl);
+  //const ctx = internalCanvas.getContext("2d");
+
+  const ctx = canvas.getContext("2d");
 
   // require('fs').writeFileSync(`${Math.floor(Math.random() * 1e12)}.png`, internalCanvas.toBuffer('image/png'));
   // throw new Error('abort');
